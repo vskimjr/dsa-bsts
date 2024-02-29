@@ -4,9 +4,22 @@ import { BNodeNum } from "../common/bst";
  * Returns an array of visited nodes. */
 
 function inOrder(node: BNodeNum | null): number[] {
-  return [42];
-}
+  if (node === null) return [];
 
+  let visitedNodeVals : number[] = [];
+
+  if (node.left) {
+    visitedNodeVals = [...visitedNodeVals, ...inOrder(node.left)]
+  }
+
+  visitedNodeVals.push(node.val);
+
+  if (node.right) {
+    visitedNodeVals = [...visitedNodeVals, ...inOrder(node.right)]
+  }
+
+  return visitedNodeVals;
+}
 
 
 /** inOrderAccum(): Traverse the BST using in-order DFS.
@@ -17,7 +30,20 @@ function inOrder(node: BNodeNum | null): number[] {
 function inOrderAccum(
     node: BNodeNum | null = null,
     accum: number[] = []): number[] {
-  return [42];
+
+  if (node === null) return accum;
+
+  if (node.left){
+    inOrderAccum(node.left, accum)
+  }
+
+  accum.push(node.val)
+
+  if (node.right){
+    inOrderAccum(node.right, accum)
+  }
+
+  return accum;
 }
 
 
