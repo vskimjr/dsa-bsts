@@ -24,6 +24,7 @@ class BST<T> {
     for (const num of vals) this.insert(num);
   }
 
+
   /** insert(val): Insert a new node into the BST with value val.
    * Uses iteration. */
 

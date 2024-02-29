@@ -5,40 +5,29 @@ import { BSTNum, BNodeNum } from "../common/bst";
 
 function insertRecur(bst: BSTNum, val: number): void {
 
-  if (bst.root === null) bst.root = new BNodeNum(val);
-
-  console.log("bst.root.left", bst.root.left)
-  console.log("bst.root.right", bst.root.right)
-
-
-
-
-
-  // for (const node of bst.root)
-
-
-  if (val < bst.root.val){
-    insertRecur(bst.root.left, val)
+  if (bst.root === null){
+   bst.root = new BNodeNum(val);
+  }else{
+    insertRecurHelper(bst.root, val)
   }
 
+    function insertRecurHelper(node: BNodeNum, val: number): void {
 
+      if (val < node.val){
+        if(!node.left){
+          node.left= new BNodeNum(val);
+        }else{
+          insertRecurHelper(node.left, val)
+        }
+      }else{
+        if(!node.right){
+          node.right= new BNodeNum(val);
+        }else{
+          insertRecurHelper(node.right, val);
+        }
+      }
 
-
-
-  // if the val is less than the Left, look at the left and right of the Left
-
-  // goal: we want to assign the val as a BNode as either the left or right of
-  // a node in the BSTm potentially taking the place of a current BNode,
-  // and bumping the current BNode down,
-
-  // const newBNode = new BNodeNum(val = val, left = something, right = something)
-
-
-
-
-
-
-
+    }
 
 }
 
